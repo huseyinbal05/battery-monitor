@@ -10,6 +10,7 @@ class BatteryApp(rumps.App):
         self.menu = ["Details", "Stats1", "Stats2", "Stats3", "Stats4"]
         self.last_detailed_update = 0
         self.cached_details = None
+        self.low_battery_notified = False
         self.update_battery_status(None)
 
     def get_detailed_battery_info(self):
@@ -85,22 +86,42 @@ class BatteryApp(rumps.App):
         if battery:
             percent = int(battery.percent)
             plugged = battery.power_plugged
-            status_icon = "⚡️" if plugged else "🔋"
+            
+            # Icon and Title Logic
+            if plugged:
+                status_icon = "⚡️"
+                self.low_battery_notified = False # Reset notification if charging
+            else:
+                if percent <= 20:
+                    status_icon = "⚠️"
+                    # Low Battery Notification
+                    if not self.low_battery_notified:
+                        rumps.notification(
+                            title="Low Battery Warning",
+                            subtitle=f"Battery at {percent}%",
+                            message="Please plug in your charger.",
+                            sound=True
+                        )
+                        self.low_battery_notified = True
+                else:
+                    status_icon = "🔋"
+                    self.low_battery_notified = False
             
             self.title = f"{status_icon} {percent}%"
             
             # Update menu details
             time_left = battery.secsleft
             if time_left == psutil.POWER_TIME_UNLIMITED:
-                time_str = "Unlimited"
+                time_str = "Charged" if plugged else "Unlimited"
             elif time_left == psutil.POWER_TIME_UNKNOWN:
-                time_str = "Unknown"
+                time_str = "Calculating..."
             else:
                 hours = time_left // 3600
                 minutes = (time_left % 3600) // 60
                 time_str = f"{hours}h {minutes}m"
             
-            self.menu["Details"].title = f"Remaining: {time_str}"
+            status_text = "Charging: " if plugged else "Remaining: "
+            self.menu["Details"].title = f"{status_text}{time_str}"
             
             # Detailed stats
             details = self.get_detailed_battery_info()
