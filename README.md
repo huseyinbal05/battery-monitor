@@ -2,18 +2,21 @@
 
 A lightweight, efficient macOS menu bar application that monitors your battery status and provides detailed statistics.
 
+## Live Demo
+![Application Demo](https://raw.githubusercontent.com/huseyinbal05/battery-monitor/main/demo.png) *(Note: Add a screenshot if you have one, otherwise remove this line)*
+
 ## Features
 
 - **Menu Bar Integration**: Displays current battery percentage and charging status in your menu bar.
 - **Detailed Statistics**:
-  - **Hardware %**: The actual hardware battery percentage (often slightly different from the OS display).
-  - **Health %**: Battery health based on nominal vs design capacity.
-  - **Cycle Count**: Number of charge cycles.
-  - **Temperature**: Current battery temperature.
-  - **Electrical Stats**: Real-time Voltage, Amperage, and Power usage.
+  - **Hardware %**: The actual hardware battery percentage.
+  - **Health %**: Battery health indicator.
+  - **Cycle Count**: Total charge cycles.
+  - **Temperature**: Battery temperature.
+  - **Electrical Stats**: Voltage, Amperage, and Power.
   - **Capacity**: Current, Max, and Design capacity in mAh.
-- **Compact UI**: Optimized layout to show maximum information in minimum space.
-- **Optimized Performance**: Intelligent caching mechanism (updates detailed stats every 60s) to minimize system resource usage.
+- **Compact UI**: Grouped statistics for a clean look.
+- **Optimized**: Caches detailed stats to save energy.
 
 ## Installation
 
@@ -35,21 +38,6 @@ Run the application:
 python3 src/app.py
 ```
 
-## Download & Install
-
-You can download the latest pre-built application from the [GitHub Actions](https://github.com/huseyinbal05/battery-monitor/actions) page:
-1. Go to the "Actions" tab.
-2. Click on the latest workflow run.
-3. Scroll down to "Artifacts" and download `Battery-Monitor-App`.
-
-Alternatively, build from source:
-
-```bash
-python3 setup.py py2app
-```
-
-The application will be available in `dist/Battery Monitor.app`.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE).
