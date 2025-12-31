@@ -35,9 +35,14 @@ Run the application:
 python3 src/app.py
 ```
 
-## Build from Source
+## Download & Install
 
-To create a standalone macOS application:
+You can download the latest pre-built application from the [GitHub Actions](https://github.com/huseyinbal05/battery-monitor/actions) page:
+1. Go to the "Actions" tab.
+2. Click on the latest workflow run.
+3. Scroll down to "Artifacts" and download `Battery-Monitor-App`.
+
+Alternatively, build from source:
 
 ```bash
 python3 setup.py py2app
