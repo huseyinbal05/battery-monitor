@@ -35,6 +35,16 @@ Run the application:
 python3 src/app.py
 ```
 
+## Build from Source
+
+To create a standalone macOS application:
+
+```bash
+python3 setup.py py2app
+```
+
+The application will be available in `dist/Battery Monitor.app`.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
