@@ -14,7 +14,7 @@ class BatteryApp(rumps.App):
 
     def get_detailed_battery_info(self):
         # Optimization: Cache detailed stats for 60 seconds
-        if self.cached_details and (time.time() - self.last_detailed_update < 60):
+        if self.cached_details and (time.time() - self.last_detailed_update < 5):
             return self.cached_details
 
         try:
@@ -79,7 +79,7 @@ class BatteryApp(rumps.App):
             print(f"Error fetching detailed stats: {e}")
             return None
 
-    @rumps.timer(5)
+    @rumps.timer(1)
     def update_battery_status(self, _):
         battery = psutil.sensors_battery()
         if battery:
