@@ -31,12 +31,13 @@ class BatteryApp(rumps.App):
                 
                 # Health
                 design_cap = battery_data.get("DesignCapacity")
-                # NominalChargeCapacity might be better for health calculation against DesignCapacity
-                # But sometimes MaxCapacity is used. Let's use AppleRawMaxCapacity vs DesignCapacity for health check if available
-                # Or just display raw MaxCapacity.
-                # Common health metric: NominalChargeCapacity / DesignCapacity
+
                 nominal_cap = battery_data.get("NominalChargeCapacity")
-                health_percent = (nominal_cap / design_cap * 100) if design_cap else 0
+                # Health
+                design_cap = battery_data.get("DesignCapacity")
+                nominal_cap = battery_data.get("NominalChargeCapacity")
+                health_raw = (nominal_cap / design_cap * 100) if design_cap else 0
+                health_percent = min(100, health_raw)
 
                 cycles = battery_data.get("CycleCount")
                 
