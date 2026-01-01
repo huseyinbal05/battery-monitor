@@ -32,12 +32,10 @@ class BatteryApp(rumps.App):
                 # Health
                 design_cap = battery_data.get("DesignCapacity")
 
-                nominal_cap = battery_data.get("NominalChargeCapacity")
                 # Health
                 design_cap = battery_data.get("DesignCapacity")
                 nominal_cap = battery_data.get("NominalChargeCapacity")
-                health_raw = (nominal_cap / design_cap * 100) if design_cap else 0
-                health_percent = min(100, health_raw)
+                health_percent = (nominal_cap / design_cap * 100) if design_cap else 0
 
                 cycles = battery_data.get("CycleCount")
                 
