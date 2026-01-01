@@ -33,7 +33,11 @@ A lightweight, efficient macOS menu bar application that monitors your battery s
 
 ## Usage
 
-Run the application:
+**Easy Way (Recommended)**:
+1. Double-click the `run.command` file in the folder.
+2. The battery monitor will appear in your menu bar.
+
+**Manual Way**:
 ```bash
 python3 src/app.py
 ```

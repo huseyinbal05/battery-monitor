@@ -10,7 +10,6 @@ class BatteryApp(rumps.App):
         self.menu = ["Details", "Stats1", "Stats2", "Stats3", "Stats4"]
         self.last_detailed_update = 0
         self.cached_details = None
-        self.low_battery_notified = False
         self.update_battery_status(None)
 
     def get_detailed_battery_info(self):
@@ -90,22 +89,11 @@ class BatteryApp(rumps.App):
             # Icon and Title Logic
             if plugged:
                 status_icon = "⚡️"
-                self.low_battery_notified = False # Reset notification if charging
             else:
                 if percent <= 20:
                     status_icon = "⚠️"
-                    # Low Battery Notification
-                    if not self.low_battery_notified:
-                        rumps.notification(
-                            title="Low Battery Warning",
-                            subtitle=f"Battery at {percent}%",
-                            message="Please plug in your charger.",
-                            sound=True
-                        )
-                        self.low_battery_notified = True
                 else:
                     status_icon = "🔋"
-                    self.low_battery_notified = False
             
             self.title = f"{status_icon} {percent}%"
             
