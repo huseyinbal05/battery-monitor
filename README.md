@@ -28,12 +28,19 @@ A lightweight, efficient macOS menu bar application that monitors your battery s
 
 2.  Install dependencies:
     ```bash
-    pip install -r requirements.txt
+    uv sync
     ```
 
 ## Usage
 
 1. Double-click the `run.command` file in the folder.
+   
+   OR
+
+   Run from terminal:
+   ```bash
+   uv run src/app.py
+   ```
 2. The battery monitor will appear in your menu bar.
 
 ## License
